@@ -1,0 +1,32 @@
+# ==========================================
+# Data & Models (Crucial for this project)
+# ==========================================
+data/raw/
+data/processed/
+models/
+
+# ==========================================
+# Python & Jupyter Notebook Caches
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# ==========================================
+# Virtual Environments
+# ==========================================
+.venv/
+venv/
+ENV/
+env/
+
+# ==========================================
+# IDE Configurations & OS Files
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
