@@ -54,3 +54,9 @@ def engineer_features(df):
     df["device_count"] = df.groupby("device_id")["device_id"].transform("count")
     
     return df
+
+def clean_data(df):
+
+    df=df.drop_duplicates()
+
+    return df

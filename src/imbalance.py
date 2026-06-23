@@ -1,0 +1,15 @@
+from imblearn.over_sampling import SMOTE
+
+
+def apply_smote(X,y):
+
+
+    smote=SMOTE(
+        random_state=42
+    )
+
+
+    return smote.fit_resample(
+        X,
+        y
+    )

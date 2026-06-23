@@ -6,31 +6,46 @@ This project balances the financial costs of false negatives (missed fraud) agai
 
 ---
 
-## 📌 Project Status: Interim-1 Milestone (Completed)
-As of June 7, 2026, **Task 1: Data Analysis and Preprocessing** is fully complete on the `task-1` branch.
-* **Data Cleaning & Pipeline Integration:** Handled missing/duplicate logs and aligned data types.
-* **Geolocation Enrichment:** Developed an efficient $O(N \log N)$ `merge_asof` lookup matching e-commerce IP addresses to spatial country boundaries without data leakage.
-* **Feature Engineering:** Extracted raw behavioral metrics including account age velocity (`time_since_signup`), structural temporal patterns (`hour_of_day`, `day_of_week`), and transaction frequency loops (`device_count`).
-* **Imbalance Isolation Strategy:** Documented a strict train-test validation split strategy using isolated SMOTE to avoid data leakage in upcoming model checkpoints.
+1. **Task 2: Modeling Layer (`notebooks/modeling.ipynb`)**
+   * Implemented baseline **Logistic Regression** and **Random Forest Ensembles** using Stratified 5-Fold Cross-Validation.
+   * Mitigated extreme target skewness with balanced training iterations utilizing **SMOTE**.
+
+2. **Task 3: SHAP Explainability (`notebooks/shap-explainability.ipynb`)**
+   * Integrated a Game-Theoretic interpretability layer utilizing **SHAP** to trace structural global drivers and extract localized diagnostic features.
+   * Global feature impacts are rendered and archived inside `reports/figures/`.
+
+3. **Software Engineering & Continuous Integration (`.github/workflows/unittests.yml`)**
+   * Migrated functional transformations out of loose blocks into modular architecture packages inside `src/`.
+   * Enforced systematic development tracking using an automated **GitHub Actions CI Test Suite Pipeline**.
 
 ---
 
-## 📂 Repository Architecture
-
+## 📂 Repository Architecture Map
 ```text
 fraud-detection/
-├── data/                       # Local only (Ignored by Git)
-│   ├── raw/                    # Original raw CSV files
-│   └── processed/              # Engineered, cleaned, and normalized data
+├── .github/workflows/
+│   └── unittests.yml             <-- FIXED: Automated CI Pipeline Configuration
+├── data/
+│   ├── raw/
+│   └── processed/
+├── src/                          <-- FIXED: Modular Production Code base
+│   ├── __init__.py
+│   ├── preprocessing.py
+│   └── imbalance.py
+├── tests/                        <-- FIXED: Automated Unit Testing Framework
+│   ├── __init__.py
+│   └── test_processing.py
+├── models/
+│   └── random_forest_fraud.pkl   <-- FIXED: Serialized Best ML Model Object
 ├── notebooks/
-│   ├── eda-fraud-data.ipynb    # E-commerce EDA & Geolocation mapping
-│   ├── eda-creditcard.ipynb    # Credit card EDA & Imbalance review
-│   └── feature-engineering.ipynb # Feature extraction, scaling & encoding
-├── src/                        # Modular source code scripts
-├── tests/                      # Unit testing suite
-├── models/                     # Saved model binaries (serialized artifacts)
-├── requirements.txt            # Project environment specifications
-└── README.md                   # Project documentation
+│   ├── feature-engineering.ipynb
+│   ├── modeling.ipynb            <-- FIXED: Model Selection & Metrics Training
+│   └── shap-explainability.ipynb <-- FIXED: SHAP XAI Visualizations & Audits
+├── reports/
+│   ├── figures/
+│   │   └── shap_global_summary.png
+│   └── Final_Fraud_Detection_Report.md <-- FIXED: Comprehensive Analysis Case-Study
+└── requirements.txt
 🚀 Getting Started & Environment Setup1. Clone the RepositoryBashgit clone [https://github.com/YOUR_GITHUB_USERNAME/fraud-detection.git](https://github.com/YOUR_GITHUB_USERNAME/fraud-detection.git)
 cd fraud-detection
 2. Set Up a Virtual EnvironmentBash# Create environment
